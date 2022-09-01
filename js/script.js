@@ -30,7 +30,7 @@ function playRound(playerSelection, computerSelection) {
     switch (playerSelection) {
     case "Rock":
       if (computerSelection === "Rock") {
-        roundWinnerMessage = `No winner! You both played ${playerSelection}`;
+        roundWinnerMessage = `Tie! You both played ${playerSelection}`;
       } else if (computerSelection === "Paper") {
         roundWinnerMessage = `You lose! ${computerSelection} beats ${playerSelection}`;
         winner = "computer";
@@ -44,7 +44,7 @@ function playRound(playerSelection, computerSelection) {
         roundWinnerMessage = `You win! ${playerSelection} beats ${computerSelection}`;
         winner = "player";
       } else if (computerSelection === "Paper") {
-        roundWinnerMessage = `No winner! You both played ${playerSelection}`;
+        roundWinnerMessage = `Tie! You both played ${playerSelection}`;
       } else if (computerSelection === "Scissors") {
         roundWinnerMessage = `You lose! ${computerSelection} beats ${playerSelection}`;
         winner = "computer";
@@ -58,7 +58,7 @@ function playRound(playerSelection, computerSelection) {
         roundWinnerMessage = `You win! ${playerSelection} beats ${computerSelection}`;
         winner = "player";
       } else if (computerSelection === "Scissors") {
-        roundWinnerMessage = `No winner! You both played ${playerSelection}`;
+        roundWinnerMessage = `Tie! You both played ${playerSelection}`;
       }
       break;
     default:   
@@ -93,12 +93,13 @@ function game() {
   }
 
   if (playerScore > computerScore) {
-    gameResultMessage = `Congratulations! You won the game! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+    gameResultMessage = `\nCongratulations! You won the game! \nPlayer Score: ${playerScore} Computer Score: ${computerScore}`;
   } else if (playerScore < computerScore) {
-    gameResultMessage = `Sorry! You lost the game! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+    gameResultMessage = `\nSorry! You lost the game! \nPlayer Score: ${playerScore} Computer Score: ${computerScore}`;
   } else {
-    gameResultMessage = "The game was a tie";
+    gameResultMessage = "\nThe game was a tie";
   }
+  
   console.log(gameResultMessage);
 }
   
