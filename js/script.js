@@ -59,14 +59,14 @@ function game() { // Created game function for five rounds
       let roundResult = playRound(formattedUserSelection, computerPlay()); 
     console.log(roundResult[0]);
 
-    if (roundResult[1] === "player") { // Shows result of playerscore
+    if (roundResult[1] === "player") { 
       playerScore += 1; // Adds one to score when player wins a round
-    } else if (roundResult[1] === "computer") { // Shows result of computer score
+    } else if (roundResult[1] === "computer") { 
       computerScore += 1; // Adds one to score when computer wins a round
     }
   }
 
-  if (playerScore > computerScore) {
+  if (playerScore > computerScore) { // A message which shows result of the winner and the total scores of each player
     gameResultMessage = `\nCongratulations! You won the game! \nPlayer Score: ${playerScore} Computer Score: ${computerScore}`;
   } else if (playerScore < computerScore) {
     gameResultMessage = `\nSorry! You lost the game! \nPlayer Score: ${playerScore} Computer Score: ${computerScore}`;
