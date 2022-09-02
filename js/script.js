@@ -53,12 +53,11 @@ function game() { // Created game function for five rounds
   let playerScore = 0; // Variable that starts score from 0
   let computerScore = 0; // Variable that starts score from 0
   let gameResultMessage; // Variable for the message result
-
-  for (let i = 0; i < 5; i++) { // Created a for loop to repeat the rounds five times
-    let userSelection = prompt("Please choose rock, paper or scissors."); // Variable that prompts user to enter their choice
-    let formattedUserSelection = userSelection.charAt(0).toUpperCase() + userSelection.slice(1).toLowerCase(); // Input rock paper scissors in any format. Whatever the input is converted to lowercase to prevent any errors.
-    let roundResult = playRound(formattedUserSelection, computerPlay()); 
-  console.log(roundResult[0]);
+    for (let i = 0; i < 5; i++) { // Created a for loop to repeat the rounds five times
+      let userSelection = prompt("Please choose rock, paper or scissors."); // Variable that prompts user to enter their choice
+      let formattedUserSelection = userSelection.charAt(0).toUpperCase() + userSelection.slice(1).toLowerCase(); // Input rock paper scissors in any format. Whatever the input is converted to lowercase to prevent any errors.
+      let roundResult = playRound(formattedUserSelection, computerPlay()); 
+    console.log(roundResult[0]);
 
     if (roundResult[1] === "player") { // Shows result of playerscore
       playerScore += 1; // Adds one to score when player wins a round
@@ -74,7 +73,7 @@ function game() { // Created game function for five rounds
   } else {
     gameResultMessage = "\nThe game was a tie";
   }
-  console.log(gameResultMessage);
+    console.log(gameResultMessage);
 }
   
 game();
