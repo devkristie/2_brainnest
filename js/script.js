@@ -1,5 +1,3 @@
-// WE NEED AN OPTION WHERE IF YOU INPUT A WRONG WORD IT SAYS PLEASE ENTER ROCK PAPER OR SCISSORS!
-
 alert("Lets play a game!");
 
 function computerPlay() {
