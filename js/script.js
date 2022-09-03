@@ -1,6 +1,6 @@
 alert("Lets play a game!");
 
- function computerPlay() {
+function computerPlay() {
   let playerOptions = ["Rock", "Paper", "Scissors"];
   let randomString = Math.floor(Math.random() * playerOptions.length);
   return playerOptions[randomString];
@@ -57,9 +57,7 @@ function game() {
     gameResultMessage;
   for (let i = 0; i < 5; i++) {
     let userSelection = prompt(`Round ${i + 1}: Please enter rock, paper or scissors.`);
-    let formattedUserSelection =
-      userSelection.charAt(0).toUpperCase() +
-      userSelection.slice(1).toLowerCase();
+    let formattedUserSelection = userSelection.charAt(0).toUpperCase() + userSelection.slice(1).toLowerCase();
     let { roundResultMessage, roundWinner } = playRound(
       formattedUserSelection,
       computerPlay()
@@ -78,8 +76,7 @@ function game() {
   if (playerScore === computerScore) {
     gameResultMessage = "The game was a tie";
   } else {
-    gameResultMessage =
-      playerScore > computerScore
+    gameResultMessage = playerScore > computerScore
         ? `\nCongratulations! You won the game! \nPlayer Score: ${playerScore} Computer Score: ${computerScore}`
         : `\nSorry! You lost the game! \nPlayer Score: ${playerScore} Computer Score: ${computerScore}`;
   }
