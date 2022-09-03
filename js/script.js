@@ -1,80 +1,89 @@
 alert("Lets play a game!");
 
-function computerPlay() {
-  let selectionOptions = ["Rock", "Paper", "Scissors"]; // List of options for the computer in an array
-  let randomString = Math.floor(Math.random() * selectionOptions.length); // Lets you choose a random item from the array
-  return selectionOptions[randomString]; // Returns random item to the console
-  }
+ function computerPlay() {
+  let playerOptions = ["Rock", "Paper", "Scissors"];
+  let randomString = Math.floor(Math.random() * playerOptions.length);
+  return playerOptions[randomString];
+}
 
-function playRound(playerSelection, computerSelection) { // Nested a conditional statement using switch case in a function with parameters for the single round
-  let roundWinnerMessage; 
-  let winner; // Declared variables
-    switch (playerSelection) {
+function playRound(playerSelection, computerSelection) {
+  const roundResult = {
+    roundResultMessage: "",
+    roundWinner: "",
+  };
+  switch (playerSelection) {
     case "Rock":
       if (computerSelection === "Rock") {
-        roundWinnerMessage = `Tie! You both played ${playerSelection}`;
+        roundResult.roundResultMessage = `Tie! You both played ${playerSelection}`;
       } else if (computerSelection === "Paper") {
-        roundWinnerMessage = `You lose! ${computerSelection} beats ${playerSelection}`;
-        winner = "computer";
+        roundResult.roundResultMessage = `You lose! ${computerSelection} beats ${playerSelection}`;
+        roundResult.roundWinner = "computer";
       } else if (computerSelection === "Scissors") {
-        roundWinnerMessage = `You win! ${playerSelection} beats ${computerSelection}`;
-        winner = "player";
+        roundResult.roundResultMessage = `You win! ${playerSelection} beats ${computerSelection}`;
+        roundResult.roundWinner = "player";
       }
       break;
     case "Paper":
       if (computerSelection === "Rock") {
-        roundWinnerMessage = `You win! ${playerSelection} beats ${computerSelection}`;
-        winner = "player";
+        roundResult.roundResultMessage = `You win! ${playerSelection} beats ${computerSelection}`;
+        roundResult.roundWinner = "player";
       } else if (computerSelection === "Paper") {
-        roundWinnerMessage = `Tie! You both played ${playerSelection}`;
+        roundResult.roundResultMessage = `Tie! You both played ${playerSelection}`;
       } else if (computerSelection === "Scissors") {
-        roundWinnerMessage = `You lose! ${computerSelection} beats ${playerSelection}`;
-        winner = "computer";
+        roundResult.roundResultMessage = `You lose! ${computerSelection} beats ${playerSelection}`;
+        roundResult.roundWinner = "computer";
       }
       break;
     case "Scissors":
       if (computerSelection === "Rock") {
-        roundWinnerMessage = `You lose! ${computerSelection} beats ${playerSelection}`;
-        winner = "computer";
+        roundResult.roundResultMessage = `You lose! ${computerSelection} beats ${playerSelection}`;
+        roundResult.roundWinner = "computer";
       } else if (computerSelection === "Paper") {
-        roundWinnerMessage = `You win! ${playerSelection} beats ${computerSelection}`;
-        winner = "player";
+        roundResult.roundResultMessage = `You win! ${playerSelection} beats ${computerSelection}`;
+        roundResult.roundWinner = "player";
       } else if (computerSelection === "Scissors") {
-        roundWinnerMessage = `Tie! You both played ${playerSelection}`;
+        roundResult.roundResultMessage = `Tie! You both played ${playerSelection}`;
       }
       break;
-    default:   
-      roundWinnerMessage = "Sorry, you did not enter a valid option!"; // If the user enters a wrong input a message comes up
-    }
-  return [roundWinnerMessage, winner]; // Returns the winner of the round
+    default:
+      console.log("You did not enter a valid option!");
+  }
+  return roundResult;
 }
 
-function game() { // Created game function for five rounds
-  let playerScore = 0; // Variable that starts score from 0
-  let computerScore = 0; // Variable that starts score from 0
-  let gameResultMessage; // Variable for the message result
-    for (let i = 0; i < 5; i++) { // Created a for loop to repeat the rounds five times
-      let userSelection = prompt(`Round ${i + 1} - Please choose rock, paper or scissors.`); // Variable that prompts user to enter their choice
-      let formattedUserSelection = userSelection.charAt(0).toUpperCase() 
-      + userSelection.slice(1).toLowerCase(); // Input rock paper scissors in any format. Whatever the input is converted to lowercase to prevent any errors.
-      let roundResult = playRound(formattedUserSelection, computerPlay()); 
-    console.log(roundResult[0]);
-
-    if (roundResult[1] === "player") { 
-      playerScore += 1; // Adds one to score when player wins a round
-    } else if (roundResult[1] === "computer") { 
-      computerScore += 1; // Adds one to score when computer wins a round
-    }
+function game() {
+  let playerScore = 0,
+    computerScore = 0,
+    gameResultMessage;
+  for (let i = 0; i < 5; i++) {
+    let userSelection = prompt(`Round ${i + 1}: Please enter rock, paper or scissors.`);
+    let formattedUserSelection =
+      userSelection.charAt(0).toUpperCase() +
+      userSelection.slice(1).toLowerCase();
+    let { roundResultMessage, roundWinner } = playRound(
+      formattedUserSelection,
+      computerPlay()
+    );
+    if (roundResultMessage === "" && roundWinner === "") {
+      i--;
+    } else{
+      console.log(`Round ${i + 1}: ${roundResultMessage}`);
+      if (roundWinner === "player") {
+        playerScore += 1;
+      } else if (roundWinner === "computer") {
+        computerScore += 1;
+      }
+    }   
   }
-
-  if (playerScore > computerScore) { // A message which shows result of the winner and the total scores of each player
-    gameResultMessage = `\nCongratulations! You won the game! \nPlayer Score: ${playerScore} Computer Score: ${computerScore}`;
-  } else if (playerScore < computerScore) {
-    gameResultMessage = `\nSorry! You lost the game! \nPlayer Score: ${playerScore} Computer Score: ${computerScore}`;
+  if (playerScore === computerScore) {
+    gameResultMessage = "The game was a tie";
   } else {
-    gameResultMessage = "\nThe game was a tie";
+    gameResultMessage =
+      playerScore > computerScore
+        ? `\nCongratulations! You won the game! \nPlayer Score: ${playerScore} Computer Score: ${computerScore}`
+        : `\nSorry! You lost the game! \nPlayer Score: ${playerScore} Computer Score: ${computerScore}`;
   }
-    console.log(gameResultMessage);
+  console.log(`END OF THE GAME! ${gameResultMessage}`);
 }
-  
+
 game();
