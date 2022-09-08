@@ -1,4 +1,11 @@
-alert("Lets play a game!");
+const rockButton = document.querySelector(".rock");
+const paperButton = document.querySelector(".paper");
+const scissorsButton = document.querySelector(".scissors");
+const computerScore = document.querySelector(".computer-score");
+const playerScore = document.querySelector(".playerScore");
+
+let screen = " ";
+let screenStorage = " ";
 
 function computerPlay() {
   let playerOptions = ["Rock", "Paper", "Scissors"];
@@ -51,36 +58,62 @@ function playRound(playerSelection, computerSelection) {
   return roundResult;
 }
 
-function game() {
-  let playerScore = 0,
-    computerScore = 0,
-    gameResultMessage;
-  for (let i = 0; i < 5; i++) {
-    let userSelection = prompt(`Round ${i + 1}: Please enter rock, paper or scissors.`);
-    let formattedUserSelection = userSelection.charAt(0).toUpperCase() + userSelection.slice(1).toLowerCase();
-    let { roundResultMessage, roundWinner } = playRound(
-      formattedUserSelection,
-      computerPlay()
-    );
-    if (roundResultMessage === "" && roundWinner === "") {
-      i--;
-    } else{
-      console.log(`Round ${i + 1}: ${roundResultMessage}`);
-      if (roundWinner === "player") {
-        playerScore += 1;
-      } else if (roundWinner === "computer") {
-        computerScore += 1;
-      }
-    }   
-  }
-  if (playerScore === computerScore) {
-    gameResultMessage = "The game was a tie";
-  } else {
-    gameResultMessage = playerScore > computerScore
-        ? `\nCongratulations! You won the game! \nPlayer Score: ${playerScore} Computer Score: ${computerScore}`
-        : `\nSorry! You lost the game! \nPlayer Score: ${playerScore} Computer Score: ${computerScore}`;
-  }
-  console.log(`END OF THE GAME! ${gameResultMessage}`);
-}
+rockButton.addEventListener("click", function() {
+  const computerSelection = computerPlay()
+  const playerSelection = "rock";
+  playRound (playerSelection, computerSelection)
+});
 
-game();
+paperButton.addEventListener("click", function() {
+  const computerSelection = computerPlay()
+  const playerSelection = "paper";
+  playRound (playerSelection, computerSelection)
+});
+
+scissorsButton.addEventListener("click", function() {
+  const computerSelection = computerPlay()
+  const playerSelection = "scissors";
+  playRound (playerSelection, computerSelection)
+});
+
+
+
+
+
+// function game() {
+//   let playerScore = 0,
+//     computerScore = 0,
+//     gameResultMessage;
+
+//   for (let i = 0; i < 5; i++) {
+//     let userSelection = prompt(`Round ${i + 1}: Please enter rock, paper or scissors.`);
+//     let formattedUserSelection = userSelection.charAt(0).toUpperCase() + userSelection.slice(1).toLowerCase();
+//     let { roundResultMessage, roundWinner } = playRound(
+//       formattedUserSelection,
+//       computerPlay()
+//     );
+
+//     if (roundResultMessage === "" && roundWinner === "") {
+//       i--;
+//     } else{
+//       console.log(`Round ${i + 1}: ${roundResultMessage}`);
+//       if (roundWinner === "player") {
+//         playerScore += 1;
+//       } else if (roundWinner === "computer") {
+//         computerScore += 1;
+//       }
+//     }   
+//   }
+
+//   if (playerScore === computerScore) {
+//     gameResultMessage = "The game was a tie";
+//   } else {
+//     gameResultMessage = playerScore > computerScore
+//         ? `\nCongratulations! You won the game! \nPlayer Score: ${playerScore} Computer Score: ${computerScore}`
+//         : `\nSorry! You lost the game! \nPlayer Score: ${playerScore} Computer Score: ${computerScore}`;
+//   }
+//   console.log(`END OF THE GAME! ${gameResultMessage}`); 
+
+// }
+
+// game();
