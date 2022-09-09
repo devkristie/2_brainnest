@@ -2,10 +2,7 @@ const rockButton = document.querySelector(".rock");
 const paperButton = document.querySelector(".paper");
 const scissorsButton = document.querySelector(".scissors");
 const computerScore = document.querySelector(".computer-score");
-const playerScore = document.querySelector(".playerScore");
-
-let screen = " ";
-let screenStorage = " ";
+const playerScore = document.querySelector(".player-score");
 
 function computerPlay() {
   let playerOptions = ["Rock", "Paper", "Scissors"];
@@ -15,8 +12,8 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
   const roundResult = {
-    roundResultMessage: "",
-    roundWinner: "",
+     roundResultMessage: "",
+     roundWinner: "",
   };
   switch (playerSelection) {
     case "Rock":
@@ -59,24 +56,68 @@ function playRound(playerSelection, computerSelection) {
 }
 
 rockButton.addEventListener("click", function() {
-  const computerSelection = computerPlay()
-  const playerSelection = "rock";
-  playRound (playerSelection, computerSelection)
+  const computerSelection = computerPlay();
+  const playerSelection = "Rock";
+  playRound (playerSelection, computerSelection);
+  let result = playRound (playerSelection, computerSelection);
+  if (result.roundWinner === "computer") {
+    computerScore.textContent = parseFloat(computerScore.textContent) +1;
+  } else if (result.roundWinner === "player") {
+    playerScore.textContent = parseFloat(playerScore.textContent) +1;
+  }
+
+  if (computerScore.textContent === "5") {
+    computerScore.textContent = "Computer wins!";
+  } else if (playerScore.textContent === "5") {
+    playerScore.textContent = "You win!";
+  }
 });
 
 paperButton.addEventListener("click", function() {
-  const computerSelection = computerPlay()
-  const playerSelection = "paper";
-  playRound (playerSelection, computerSelection)
+  const computerSelection = computerPlay();
+  const playerSelection = "Paper";
+  playRound (playerSelection, computerSelection);
+  let result =   playRound (playerSelection, computerSelection);
+  if (result.roundWinner === "computer") {
+    computerScore.textContent = parseFloat(computerScore.textContent) +1;
+  } else if (result.roundWinner === "player") {
+    playerScore.textContent = parseFloat(playerScore.textContent) +1;
+  }
+
+  if (computerScore.textContent === "5") {
+    computerScore.textContent = "Computer wins!";
+  } else if (playerScore.textContent === "5") {
+    playerScore.textContent = "You win!";
+  }
 });
 
 scissorsButton.addEventListener("click", function() {
-  const computerSelection = computerPlay()
-  const playerSelection = "scissors";
-  playRound (playerSelection, computerSelection)
+  const computerSelection = computerPlay();
+  const playerSelection = "Scissors";
+  playRound (playerSelection, computerSelection);
+  let result =   playRound (playerSelection, computerSelection);
+  if (result.roundWinner === "computer") {
+    computerScore.textContent = parseFloat(computerScore.textContent) +1;
+  } else if (result.roundWinner === "player") {
+    playerScore.textContent = parseFloat(playerScore.textContent) +1;
+  }
+
+  if (computerScore.textContent === "5") {
+    computerScore.textContent = "Computer wins!";
+  } else if (playerScore.textContent === "5") {
+    playerScore.textContent = "You win!";
+  }
 });
 
 
+
+
+
+// function scoreResult() {
+//   let score = screen.getElementsByClassName(".playerScore");
+//   playerScore.textContent = "hello";
+//   return score;
+// }
 
 
 
@@ -93,17 +134,17 @@ scissorsButton.addEventListener("click", function() {
 //       computerPlay()
 //     );
 
-//     if (roundResultMessage === "" && roundWinner === "") {
-//       i--;
-//     } else{
-//       console.log(`Round ${i + 1}: ${roundResultMessage}`);
-//       if (roundWinner === "player") {
-//         playerScore += 1;
-//       } else if (roundWinner === "computer") {
-//         computerScore += 1;
-//       }
-//     }   
-//   }
+  //   if (roundResultMessage === "" && roundWinner === "") {
+  //     i--;
+  //   } else{
+  //     console.log(`Round ${i + 1}: ${roundResultMessage}`);
+  //     if (roundWinner === "player") {
+  //       playerScore += 1;
+  //     } else if (roundWinner === "computer") {
+  //       computerScore += 1;
+  //     }
+  //   }   
+  // }
 
 //   if (playerScore === computerScore) {
 //     gameResultMessage = "The game was a tie";
